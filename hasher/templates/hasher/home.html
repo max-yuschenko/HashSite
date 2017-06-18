@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <a href="{% url 'upload' %}">File Upload</a>
+
+  <p>Uploaded files:</p>
+  <ul>
+    {% if count_of_prev_uploaded %}
+        <p>Number of previous loads of last loaded file: {{ count_of_prev_uploaded }}</p>
+    {% endif %}
+    {% for obj in documents %}
+      <li>
+        <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
+        <small>(Uploaded at: {{ obj.uploaded_at }})</small>
+        <p>SHA - 256: {{ obj.sha }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
